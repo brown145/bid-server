@@ -1,0 +1,13 @@
+.hidden {
+  display: none;
+}
+
+.navigation li{
+  display: inline;
+  list-style-type: none;
+  padding-right: 20px;
+}
+
+.navigation li.active{
+  font-weight: bold;
+}

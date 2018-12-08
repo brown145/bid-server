@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0" />
+    <title>Bid Server - Admin</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">
+          Bid Server - Admin
+        </h1>
+
+        <!-- TODO: update to bulma v0.7.3 for this to work as indeterminate -->
+        <progress id="loading" class="progress is-small is-primary"></progress>
+        <!------------------------->
+        
+        <section id="anonymous" class="hidden">
+          <ul class="navigation">
+            <li><a href="/auth/google">login</a></li>
+          </ul>
+        </section>
+        <section id="authorized" class="hidden">
+          <ul class="navigation">
+            <li data-tab="bids"><a href="#bids">bids</a></li>
+            <li data-tab="issues"><a href="#issues">issues</a></li>
+            <li data-tab="messages"><a href="#messages">messages</a></li>
+            <li data-tab="rooms"><a href="#rooms">rooms</a></li>
+            <li data-tab="users"><a href="#users">users</a></li>
+          </ul>
+          <hr />
+          <table class="table mainTable">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+
+          <div class="container details"></div>
+        </section>
+      </div>
+    </section>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.js"></script>
+    <script src="//unpkg.com/@feathersjs/client@^3.0.0/dist/feathers.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
