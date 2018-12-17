@@ -1,7 +1,7 @@
 {
   "name": "bid-server",
   "description": "Bid server for team poker estimation",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "",
   "main": "src",
   "keywords": [
@@ -40,6 +40,8 @@
     "compression": "^1.7.3",
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
+    "feathers-authentication-hooks": "^0.3.1",
+    "feathers-hooks-common": "^4.19.4",
     "feathers-nedb": "^3.1.0",
     "helmet": "^3.15.0",
     "nedb": "^1.8.0",

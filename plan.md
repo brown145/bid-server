@@ -1,24 +1,28 @@
-VERSION NEXT
- [ ] Functionalize hooks
+VERSION DONE
+ [√] Functionalize hooks
    - look at common or authorization hooks to replace custom
    - make hooks single action; not complex
- [ ] Associate to current user hook
- [ ] Use hooks.disable() to prevent deleting: https://feathers-plus.github.io/v1/feathers-hooks-common/#disallow
+ [√] Associate to current user hook
+ [√] Use hooks.disable() to prevent deleting: https://feathers-plus.github.io/v1/feathers-hooks-common/#disallow
     - restrict CRUD actions (ex no delete)
- [ ] Use dispatch not result to format output (may require formatting nested props?)
+ [x] Use result & dispatch to format output (may require formatting nested props?)
     - remove the formatId
- [ ] Use populate to lookup related info
- [ ] getByDot seems good for getting profile props from google
+ [√] Use populate to lookup related info
+ [x] getByDot seems good for getting profile props from google
 
 
-VERSION FUTURE
+VERSION NEXT
  Version Tooling
   - eslint not working
   - npm scripts
     - nodemon
     - jest watch
 
+VERSION FUTURE
+ - review: https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html
+
  Version User Management
+  - Users and join/leave rooms (or should this just be channels?)
   - Associate to current user hook
   - User get restrict to owner
     - test create user and CRUD from API; only get should work

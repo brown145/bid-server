@@ -1,23 +1,21 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const processGoogleUser = require('../../hooks/process-google-user');
 
-const formatId = require('../../hooks/format-id');
-
 module.exports = {
   before: {
     all: [],
     find: [ authenticate('jwt') ],
     get: [ authenticate('jwt') ],
-    create: [processGoogleUser()],
-    update: [  authenticate('jwt') ],
-    patch: [  authenticate('jwt') ],
+    create: [ processGoogleUser() ],
+    update: [ authenticate('jwt'), processGoogleUser() ],
+    patch: [ authenticate('jwt') ],
     remove: [ authenticate('jwt') ]
   },
 
   after: {
     all: [],
-    find: [formatId()],
-    get: [formatId()],
+    find: [],
+    get: [],
     create: [],
     update: [],
     patch: [],
