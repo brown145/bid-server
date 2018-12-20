@@ -4,12 +4,12 @@ const processGoogleUser = require('../../hooks/process-google-user');
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
-    get: [ authenticate('jwt') ],
-    create: [ processGoogleUser() ],
-    update: [ authenticate('jwt'), processGoogleUser() ],
-    patch: [ authenticate('jwt') ],
-    remove: [ authenticate('jwt') ]
+    find: [authenticate('jwt')],
+    get: [authenticate('jwt')],
+    create: [processGoogleUser()],
+    update: [authenticate('jwt'), processGoogleUser()],
+    patch: [authenticate('jwt')],
+    remove: [authenticate('jwt')],
   },
 
   after: {
@@ -19,7 +19,7 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -29,6 +29,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };

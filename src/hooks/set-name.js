@@ -1,13 +1,11 @@
 const errors = require('@feathersjs/errors');
 
 // eslint-disable-next-line no-unused-vars
-module.exports = function (options = {
-  maxLength: 200
-}) {
-  return async context => {
+module.exports = function (options = { maxLength: 200 }) {
+  return async (context) => {
     const { data } = context;
 
-    if(!data.name) {
+    if (!data.name) {
       throw new errors.Unprocessable('Name is required.');
     }
 

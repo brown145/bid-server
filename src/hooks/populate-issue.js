@@ -3,17 +3,19 @@
 
 // eslint-disable-next-line no-unused-vars
 module.exports = function (options = {}) {
-  return async context => {
+  return async (context) => {
     // Get `app`, `method`, `params` and `result` from the hook context
-    const { app, method, result, params } = context;
+    const {
+      app, method, result, params,
+    } = context;
 
     // Make sure that we always have a list of items either by wrapping
     // a single message into an array or by getting the `data` from the `find` method's result
-    const items = method === 'find' ? result.data : [ result ];
+    const items = method === 'find' ? result.data : [result];
 
     // Asynchronously get user object from each message's `userId`
     // and add it to the message
-    await Promise.all(items.map(async item => {
+    await Promise.all(items.map(async (item) => {
       // Also pass the original `params` to the service call
       // so that it has the same information available (e.g. who is requesting it)
       item.issue = await app.service('issues').get(item.issueId, params);

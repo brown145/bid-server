@@ -9,7 +9,7 @@ const createdBySchema = require('../../schemas/user-by-createdById');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate('jwt')],
     find: [],
     get: [],
     create: [
@@ -17,12 +17,14 @@ module.exports = {
       setNow('createdAt'),
       setName({ maxLength: 200 }),
       associateCurrentUser({ as: 'createdById' }),
-      associateRoom({ as: 'roomId', from: 'roomId' }),
-      keep('createdAt', 'createdById', 'roomId', 'name')
+      associateRoom({
+        as: 'roomId', from: 'roomId',
+      }),
+      keep('createdAt', 'createdById', 'roomId', 'name'),
     ],
-    update: [ disallow() ],
-    patch: [ disallow() ],
-    remove: [ disallow() ]
+    update: [disallow()],
+    patch: [disallow()],
+    remove: [disallow()],
   },
 
   after: {
@@ -30,12 +32,12 @@ module.exports = {
     find: [],
     get: [
       populate({ schema: createdBySchema }),
-      populate({ schema: roomSchema })
+      populate({ schema: roomSchema }),
     ],
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -45,6 +47,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };

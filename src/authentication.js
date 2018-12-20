@@ -13,7 +13,7 @@ module.exports = function (app) {
 
   app.configure(oauth2(Object.assign({
     name: 'google',
-    Strategy: GoogleStrategy
+    Strategy: GoogleStrategy,
   }, config.google)));
 
   // The `authentication` service is used to create a JWT.
@@ -22,11 +22,11 @@ module.exports = function (app) {
   app.service('authentication').hooks({
     before: {
       create: [
-        authentication.hooks.authenticate(config.strategies)
+        authentication.hooks.authenticate(config.strategies),
       ],
       remove: [
-        authentication.hooks.authenticate('jwt')
-      ]
-    }
+        authentication.hooks.authenticate('jwt'),
+      ],
+    },
   });
 };

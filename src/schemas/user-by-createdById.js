@@ -3,6 +3,6 @@ module.exports = {
     service: 'users',
     nameAs: 'createdBy',
     parentField: 'createdById',
-    childField: '_id'
-  }
+    childField: '_id',
+  },
 };

@@ -7,7 +7,7 @@ const createdBySchema = require('../../schemas/user-by-createdById');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate('jwt')],
     find: [],
     get: [],
     create: [
@@ -15,12 +15,12 @@ module.exports = {
       setNow('createdAt'),
       associateCurrentUser({ as: 'createdById' }),
       setName({ maxLength: 200 }),
-      context => { context.data.memberIds = []; return context; },
-      keep('createdAt', 'createdById', 'memberIds', 'name')
+      (context) => { context.data.memberIds = []; return context; },
+      keep('createdAt', 'createdById', 'memberIds', 'name'),
     ],
-    update: [ disallow() ],
-    patch: [ disallow() ], // TODO: iff(context => !context.params.user.isAdmin, disallow())
-    remove: [ disallow() ]
+    update: [disallow()],
+    patch: [disallow()], // TODO: iff(context => !context.params.user.isAdmin, disallow())
+    remove: [disallow()],
   },
 
   after: {
@@ -33,7 +33,7 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -43,6 +43,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };
