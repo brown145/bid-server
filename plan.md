@@ -11,16 +11,16 @@ VERSION DONE
  [x] getByDot seems good for getting profile props from google
 
 
-VERSION NEXT
  Version Tooling
   [√] eslint not working
   [ ] npm scripts
     [√] nodemon
-    [ ] jest watch
+    [x] jest watch
 
-VERSION FUTURE
- - review: https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html
 
+  [√] review: https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html
+
+VERSION NEXT
  Version User Management
   - Users and join/leave rooms (or should this just be channels?)
   - Associate to current user hook
@@ -28,6 +28,7 @@ VERSION FUTURE
     - test create user and CRUD from API; only get should work
     - find should work for all until we add isAdmin concept
 
+VERSION FUTURE
  Version Auth Tool
  - Move from Google+ to bitbucket
 
@@ -35,6 +36,14 @@ VERSION FUTURE
  - isAdmin for given users
     - allow owner/admin edits to names ect...
  - Use when and disallow to prevent edits to room/issues names
+
+Version Validation
+  - validate (joi or yup)
+  - https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html#Example
+
+Version fastjoin
+  - fastjoin instead of populate?
+  - https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html#fastJoin
 
  Version Tests
   - create jest tests
@@ -73,6 +82,9 @@ VERSION FUTURE
   - host on heroku or aws
   - review configs
   - review env variables
+
+Version graphql
+ - @feathers-plus/graphql
 
 
 
