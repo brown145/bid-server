@@ -13,10 +13,10 @@ VERSION DONE
 
 VERSION NEXT
  Version Tooling
-  - eslint not working
-  - npm scripts
-    - nodemon
-    - jest watch
+  [√] eslint not working
+  [ ] npm scripts
+    [√] nodemon
+    [ ] jest watch
 
 VERSION FUTURE
  - review: https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html
@@ -27,6 +27,9 @@ VERSION FUTURE
   - User get restrict to owner
     - test create user and CRUD from API; only get should work
     - find should work for all until we add isAdmin concept
+
+ Version Auth Tool
+ - Move from Google+ to bitbucket
 
  Version Admin
  - isAdmin for given users
