@@ -1,5 +1,14 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 const processGoogleUser = require('../../hooks/process-google-user');
+const { disallow, discard, iffElse, keep } = require('feathers-hooks-common');
+
+const isSelf = (context) => {
+  if (!context.params.user) {
+    return false;
+  }
+
+  return context.params.user._id === context.result._id;
+};
 
 module.exports = {
   before: {
@@ -7,15 +16,23 @@ module.exports = {
     find: [authenticate('jwt')],
     get: [authenticate('jwt')],
     create: [processGoogleUser()],
-    update: [authenticate('jwt'), processGoogleUser()],
-    patch: [authenticate('jwt')],
-    remove: [authenticate('jwt')],
+    update: [disallow(), authenticate('jwt'), processGoogleUser()],
+    patch: [disallow(), authenticate('jwt')],
+    remove: [disallow(), authenticate('jwt')],
   },
 
   after: {
     all: [],
-    find: [],
-    get: [],
+    find: [
+      keep('_id', 'displayName'),
+    ],
+    get: [
+      iffElse(
+        isSelf,
+        discard('google'),
+        keep('_id', 'displayName'),
+      ),
+    ],
     create: [],
     update: [],
     patch: [],

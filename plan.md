@@ -1,3 +1,5 @@
+-- v0.0.0 --------------------------------------------------
+
 VERSION DONE
  [√] Functionalize hooks
    - look at common or authorization hooks to replace custom
@@ -10,80 +12,110 @@ VERSION DONE
  [√] Use populate to lookup related info
  [x] getByDot seems good for getting profile props from google
 
-
  Version Tooling
   [√] eslint not working
   [ ] npm scripts
     [√] nodemon
     [x] jest watch
 
-
+ Version Review
   [√] review: https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html
 
-VERSION NEXT
  Version User Management
-  - Users and join/leave rooms (or should this just be channels?)
-  - Associate to current user hook
-  - User get restrict to owner
-    - test create user and CRUD from API; only get should work
-    - find should work for all until we add isAdmin concept
+  [√] Associate to current user hook
+  [√] User GET restrict to owner
+    [ ] test create user and CRUD from API; only get should work
+    [ ] find should work for all until we add isAdmin concept
+
+VERSION NEXT
+Simplificaiton
+  [ ] remove messages service (DM not needed)
+  [ ] remove rooms service (assume only being used by one team)
 
 VERSION FUTURE
- Version Auth Tool
+Auth Tool
  - Move from Google+ to bitbucket
+ - Hardcode approved user whitelist
+ - Hardcode admin user whitelist
 
- Version Admin
+Admin
  - isAdmin for given users
     - allow owner/admin edits to names ect...
  - Use when and disallow to prevent edits to room/issues names
 
-Version Validation
-  - validate (joi or yup)
-  - https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html#Example
-
-Version fastjoin
-  - fastjoin instead of populate?
-  - https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html#fastJoin
-
- Version Tests
+Tests
   - create jest tests
 
- Version logging
+logging
   - keep some kind of log
   - Use app hooks for logging
 
- Version Chanels
-  - use channel to restrict services by room
-  - publish to channels not everyone
+Dockerize
+  - setup Docker
+  - enable local Docker use
+  - DB setup with Docker
 
- Version Rounds
- - multiple rounds of bidding
- - end/stop or close room concept
-    - bidding stats (REST only)
-  - custom errors on invalid bid values
-  - custom error on bid before round is set
-  - issue filed bid round / bid filed round
-
- Version messaging
-  - support room messages
-  - support direct messages
-
- Version Tooling
-  - pagination in admin html
-  - admin delete/archive room and related data
-  - admin tables > search, sort, pagination
-  - issue import / multi create issues in room
-
- Version Productionize
-  - review logging
+Productionize
   - publish to git
   - switch to mongodb ???
   - max NEDB file size ???
   - host on heroku or aws
+  - docker?
   - review configs
   - review env variables
 
-Version graphql
+
+-- v1.0.0 --------------------------------------------------
+
+FE Client
+ - something simple
+
+-- v1.2.0 --------------------------------------------------
+
+
+Rooms
+  - create rooms service
+  - use channel to restrict services by room
+  - publish to channels not everyone
+  - Users can join/leave rooms (or should this just be channels?)
+   -> channels are only useful for realtime events; so i think we still want rooms
+   -> https://stackoverflow.com/a/6333146
+
+Validation
+ - validate (joi or yup)
+ - https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html#Example
+
+fastjoin
+ - fastjoin instead of populate?
+ - https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html#fastJoin
+
+
+-- v1.1.0 --------------------------------------------------
+
+ Tooling
+  - pagination in admin html
+  - admin delete/archive room and related data
+  - admin tables > search, sort, pagination
+  - issue import / multi create issues in room
+  - helath check endpoint
+
+Rounds
+- multiple rounds of bidding
+- end/stop or close room concept
+   - bidding stats (REST only)
+ - custom errors on invalid bid values
+ - custom error on bid before round is set
+ - issue filed bid round / bid filed round
+
+-- vX.X.X --------------------------------------------------
+
+messaging
+ - support room messages
+ - support direct messages
+
+ -- vX.X.X --------------------------------------------------
+
+graphql
  - @feathers-plus/graphql
 
 
