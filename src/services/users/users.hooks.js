@@ -16,8 +16,8 @@ module.exports = {
     find: [authenticate('jwt')],
     get: [authenticate('jwt')],
     create: [processGoogleUser()],
-    update: [disallow(), authenticate('jwt'), processGoogleUser()],
-    patch: [disallow(), authenticate('jwt')],
+    update: [authenticate('jwt'), processGoogleUser()],
+    patch: [authenticate('jwt')],
     remove: [disallow(), authenticate('jwt')],
   },
 
