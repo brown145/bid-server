@@ -3,8 +3,6 @@ const { associateCurrentUser } = require('feathers-authentication-hooks');
 const { disallow, keep, populate, required, setNow } = require('feathers-hooks-common');
 
 const setName = require('../../hooks/set-name');
-const associateRoom = require('../../hooks/associate-room');
-const roomSchema = require('../../schemas/room-by-roomId');
 const createdBySchema = require('../../schemas/user-by-createdById');
 
 module.exports = {
@@ -13,14 +11,11 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      required('name', 'roomId'),
+      required('name'),
       setNow('createdAt'),
       setName({ maxLength: 200 }),
       associateCurrentUser({ as: 'createdById' }),
-      associateRoom({
-        as: 'roomId', from: 'roomId',
-      }),
-      keep('createdAt', 'createdById', 'roomId', 'name'),
+      keep('createdAt', 'createdById', 'name'),
     ],
     update: [disallow()],
     patch: [disallow()],
@@ -32,7 +27,6 @@ module.exports = {
     find: [],
     get: [
       populate({ schema: createdBySchema }),
-      populate({ schema: roomSchema }),
     ],
     create: [],
     update: [],

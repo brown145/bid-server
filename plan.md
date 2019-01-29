@@ -27,22 +27,17 @@ VERSION DONE
     [ ] test create user and CRUD from API; only get should work
     [ ] find should work for all until we add isAdmin concept
 
-VERSION NEXT
 Simplificaiton
-  [ ] remove messages service (DM not needed)
-  [ ] remove rooms service (assume only being used by one team)
+  [√] remove messages service (DM not needed)
+  [√] remove rooms service (assume only being used by one team)
+
+VERSION NEXT
+Auth Tool
+ [ ] Hardcode approved user whitelist
+ [ ] Hardcode admin user whitelist
+ [ ] Display userType in response
 
 VERSION FUTURE
-Auth Tool
- - Move from Google+ to bitbucket
- - Hardcode approved user whitelist
- - Hardcode admin user whitelist
-
-Admin
- - isAdmin for given users
-    - allow owner/admin edits to names ect...
- - Use when and disallow to prevent edits to room/issues names
-
 Tests
   - create jest tests
 
@@ -60,12 +55,16 @@ Productionize
   - switch to mongodb ???
   - max NEDB file size ???
   - host on heroku or aws
-  - docker?
   - review configs
   - review env variables
 
 
 -- v1.0.0 --------------------------------------------------
+
+Admin
+ - isAdmin for given users
+    - allow owner/admin edits to names ect...
+ - Use when and disallow to prevent edits to room/issues names
 
 FE Client
  - something simple
