@@ -38,7 +38,7 @@ Auth Tool
 
 VERSION NEXT
 Tests
-  - create jest tests
+  [ ] create jest tests
 
 VERSION FUTURE
 logging

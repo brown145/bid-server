@@ -1,7 +1,7 @@
 const feathers = require('@feathersjs/feathers');
-const populateOwner = require('../../src/hooks/populate-owner');
+const parseGoogleUser = require('../../src/hooks/process-google-user');
 
-describe('\'populate-owner\' hook', () => {
+describe('\'process-google-user\' hook', () => {
   let app;
 
   beforeEach(() => {
@@ -10,11 +10,11 @@ describe('\'populate-owner\' hook', () => {
     app.use('/dummy', {
       async get(id) {
         return { id };
-      }
+      },
     });
 
     app.service('dummy').hooks({
-      after: populateOwner()
+      before: parseGoogleUser(),
     });
   });
 

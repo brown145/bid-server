@@ -1,7 +1,7 @@
 const feathers = require('@feathersjs/feathers');
-const populateRoom = require('../../src/hooks/populate-room');
+const isAdmin = require('../../src/hooks/populate-user_isAdmin');
 
-describe('\'populate-room\' hook', () => {
+describe('\'populate-user_isAdmin\' hook', () => {
   let app;
 
   beforeEach(() => {
@@ -10,11 +10,11 @@ describe('\'populate-room\' hook', () => {
     app.use('/dummy', {
       async get(id) {
         return { id };
-      }
+      },
     });
 
     app.service('dummy').hooks({
-      after: populateRoom()
+      after: isAdmin(),
     });
   });
 

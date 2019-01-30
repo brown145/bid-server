@@ -1,5 +1,5 @@
 const feathers = require('@feathersjs/feathers');
-const setValue = require('../../src/hooks/set-value');
+const setValue = require('../../src/hooks/set-bid_value');
 
 describe('\'set-value\' hook', () => {
   let app;
@@ -10,11 +10,11 @@ describe('\'set-value\' hook', () => {
     app.use('/dummy', {
       async get(id) {
         return { id };
-      }
+      },
     });
 
     app.service('dummy').hooks({
-      
+      before: setValue(),
     });
   });
 

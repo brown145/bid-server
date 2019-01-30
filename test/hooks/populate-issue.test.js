@@ -10,11 +10,11 @@ describe('\'populate-issue\' hook', () => {
     app.use('/dummy', {
       async get(id) {
         return { id };
-      }
+      },
     });
 
     app.service('dummy').hooks({
-      after: populateIssue()
+      after: populateIssue(),
     });
   });
 

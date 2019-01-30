@@ -10,11 +10,11 @@ describe('\'set-name\' hook', () => {
     app.use('/dummy', {
       async get(id) {
         return { id };
-      }
+      },
     });
 
     app.service('dummy').hooks({
-      before: processName()
+      before: processName(),
     });
   });
 

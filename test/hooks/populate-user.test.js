@@ -10,11 +10,11 @@ describe('\'populate-user\' hook', () => {
     app.use('/dummy', {
       async get(id) {
         return { id };
-      }
+      },
     });
 
     app.service('dummy').hooks({
-      after: populateUser()
+      after: populateUser(),
     });
   });
 
