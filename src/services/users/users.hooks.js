@@ -1,6 +1,9 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
-const processGoogleUser = require('../../hooks/process-google-user');
 const { disallow, discard, iffElse, keep } = require('feathers-hooks-common');
+
+const processGoogleUser = require('../../hooks/process-google-user');
+const populateIsAdmin = require('../../hooks/populate-user_isAdmin');
+const adminWhitelist = require('../../utilities/user-hardcodes').adminWhitelist;
 
 const isSelf = (context) => {
   if (!context.params.user) {
@@ -24,13 +27,14 @@ module.exports = {
   after: {
     all: [],
     find: [
-      keep('_id', 'displayName'),
+      populateIsAdmin(adminWhitelist),
+      keep('_id', 'displayName', 'isAdmin'),
     ],
     get: [
       iffElse(
         isSelf,
         discard('google'),
-        keep('_id', 'displayName'),
+        keep('_id', 'displayName', 'isAdmin'),
       ),
     ],
     create: [],

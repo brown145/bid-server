@@ -31,16 +31,16 @@ Simplificaiton
   [√] remove messages service (DM not needed)
   [√] remove rooms service (assume only being used by one team)
 
-VERSION NEXT
 Auth Tool
- [ ] Hardcode approved user whitelist
- [ ] Hardcode admin user whitelist
- [ ] Display userType in response
+ [√] Hardcode approved user whitelist
+ [√] Hardcode admin user whitelist
+ [√] Display userType in response
 
-VERSION FUTURE
+VERSION NEXT
 Tests
   - create jest tests
 
+VERSION FUTURE
 logging
   - keep some kind of log
   - Use app hooks for logging
@@ -60,6 +60,9 @@ Productionize
 
 
 -- v1.0.0 --------------------------------------------------
+
+Versioning API
+ - ex: /api/v1/bids/
 
 Admin
  - isAdmin for given users
