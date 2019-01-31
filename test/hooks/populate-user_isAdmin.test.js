@@ -4,23 +4,35 @@ const isAdmin = require('../../src/hooks/populate-user_isAdmin');
 describe('\'populate-user_isAdmin\' hook', () => {
   let app;
 
+  const dummyUsers = [{
+    googleId: 1,
+  }, {
+    googleId: 2,
+  }];
+  const dummyAdminUsers = [1];
+
   beforeEach(() => {
     app = feathers();
 
     app.use('/dummy', {
-      async get(id) {
-        return { id };
+      async find() {
+        return { data: dummyUsers };
       },
     });
 
     app.service('dummy').hooks({
-      after: isAdmin(),
+      after: {
+        find: isAdmin(dummyAdminUsers),
+      },
     });
   });
 
   it('runs the hook', async () => {
-    expect.assertions(1);
-    const result = await app.service('dummy').get('test');
-    expect(result).toEqual({ id: 'test' });
+    expect.assertions(2);
+    const results = await app.service('dummy').find();
+    expect(results.data.find((result) => result.googleId === 1).isAdmin)
+      .toEqual(true);
+    expect(results.data.find((result) => result.googleId === 2).isAdmin)
+      .toEqual(false);
   });
 });

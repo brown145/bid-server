@@ -38,7 +38,10 @@ Auth Tool
 
 VERSION NEXT
 Tests
-  [ ] create jest tests
+  - see: https://blog.feathersjs.com/testing-feathers-applications-eaf1a323d2d9
+  [ ] hooks
+  [ ] services
+  [ ] utilities
 
 VERSION FUTURE
 logging

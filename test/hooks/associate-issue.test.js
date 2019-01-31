@@ -8,19 +8,33 @@ describe('\'associate-issue\' hook', () => {
     app = feathers();
 
     app.use('/dummy', {
-      async get(id) {
-        return { id };
+      async create(data) {
+        return data;
       },
     });
 
     app.service('dummy').hooks({
-      before: associateIssue(),
+      before: {
+        create: associateIssue(),
+      },
+    });
+
+    app.use('/issues', {
+      async get(id) {
+        return { _id: id };
+      },
+    });
+
+    app.service('issues').hooks({
+      after: {
+        get: (context) => context,
+      },
     });
   });
 
   it('runs the hook', async () => {
     expect.assertions(1);
-    const result = await app.service('dummy').get('test');
-    expect(result).toEqual({ id: 'test' });
+    const result = await app.service('dummy').create({ issueId: 123 });
+    expect(result).toEqual({ issueId: 123 });
   });
 });

@@ -17,9 +17,7 @@ module.exports = {
       setNow('createdAt'),
       setBidValue({ maxLength: 200 }),
       associateCurrentUser({ as: 'createdById' }),
-      associateIssue({
-        as: 'issueId', from: 'issueId',
-      }),
+      associateIssue(),
       keep('createdAt', 'createdById', 'value', 'issueId'),
     ],
     update: [disallow()],
