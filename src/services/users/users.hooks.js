@@ -3,8 +3,7 @@ const { disallow, discard, iffElse, keep } = require('feathers-hooks-common');
 
 const processGoogleUser = require('../../hooks/process-google-user');
 const populateIsAdmin = require('../../hooks/populate-user_isAdmin');
-const adminWhitelist = require('../../utilities/user-hardcodes').adminWhitelist;
-const userWhitelist = require('../utilities/user-hardcodes').userWhitelist;
+const { adminWhitelist, userWhitelist } = require('../../utilities/user-hardcodes');
 
 const isSelf = (context) => {
   if (!context.params.user) {

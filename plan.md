@@ -37,11 +37,11 @@ Auth Tool
  [√] Display userType in response
 
 VERSION NEXT
-Tests
+Tests - very basic
   - see: https://blog.feathersjs.com/testing-feathers-applications-eaf1a323d2d9
-  [ ] hooks
-  [ ] services
-  [ ] utilities
+  [√] hooks
+  [√] services
+  [√] utilities
 
 VERSION FUTURE
 logging
@@ -63,6 +63,12 @@ Productionize
 
 
 -- v1.0.0 --------------------------------------------------
+
+Tests - 85% coverage
+  - see: https://blog.feathersjs.com/testing-feathers-applications-eaf1a323d2d9
+  [ ] hooks
+  [ ] services
+  [ ] utilities
 
 Versioning API
  - ex: /api/v1/bids/
