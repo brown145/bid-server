@@ -8,19 +8,21 @@ describe('\'set-value\' hook', () => {
     app = feathers();
 
     app.use('/dummy', {
-      async get(id) {
-        return { id };
+      async create(data) {
+        return data;
       },
     });
 
     app.service('dummy').hooks({
-      before: setValue(),
+      before: {
+        create: setValue(),
+      },
     });
   });
 
   it('runs the hook', async () => {
     expect.assertions(1);
-    const result = await app.service('dummy').get('test');
-    expect(result).toEqual({ id: 'test' });
+    const result = await app.service('dummy').create({ value: 1 });
+    expect(result).toEqual({ value: 1 });
   });
 });

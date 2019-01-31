@@ -1,5 +1,5 @@
 const feathers = require('@feathersjs/feathers');
-const processName = require('../../src/hooks/set-name');
+const setName = require('../../src/hooks/set-name');
 
 describe('\'set-name\' hook', () => {
   let app;
@@ -8,19 +8,21 @@ describe('\'set-name\' hook', () => {
     app = feathers();
 
     app.use('/dummy', {
-      async get(id) {
-        return { id };
+      async create(data) {
+        return data;
       },
     });
 
     app.service('dummy').hooks({
-      before: processName(),
+      before: {
+        create: setName(),
+      },
     });
   });
 
   it('runs the hook', async () => {
     expect.assertions(1);
-    const result = await app.service('dummy').get('test');
-    expect(result).toEqual({ id: 'test' });
+    const result = await app.service('dummy').create({ name: 'boo' });
+    expect(result).toEqual({ name: 'boo' });
   });
 });
