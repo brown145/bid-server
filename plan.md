@@ -36,30 +36,34 @@ Auth Tool
  [√] Hardcode admin user whitelist
  [√] Display userType in response
 
-VERSION NEXT
 Tests - very basic
   - see: https://blog.feathersjs.com/testing-feathers-applications-eaf1a323d2d9
   [√] hooks
   [√] services
   [√] utilities
 
-VERSION FUTURE
+VERSION NEXT
 logging
-  - keep some kind of log
-  - Use app hooks for logging
+  [ ] keep some kind of log
+  [ ] Use app hooks for logging
 
+VERSION FUTURE
 Dockerize
   - setup Docker
   - enable local Docker use
   - DB setup with Docker
 
+Git
+ - publish as private repo
+
 Productionize
-  - publish to git
-  - switch to mongodb ???
-  - max NEDB file size ???
-  - host on heroku or aws
   - review configs
   - review env variables
+  - set version number
+
+Host
+  - host on heroku or aws
+
 
 
 -- v1.0.0 --------------------------------------------------
@@ -70,6 +74,11 @@ Tests - 85% coverage
   [ ] services
   [ ] utilities
 
+DB
+ - pro/con NEDB -> can docker and aws?
+ - switch to mongodb ???
+ - max NEDB file size ???
+
 Versioning API
  - ex: /api/v1/bids/
 
@@ -77,6 +86,8 @@ Admin
  - isAdmin for given users
     - allow owner/admin edits to names ect...
  - Use when and disallow to prevent edits to room/issues names
+
+-- v1.1.0 --------------------------------------------------
 
 FE Client
  - something simple
@@ -101,7 +112,7 @@ fastjoin
  - https://feathers-plus.github.io/v1/feathers-hooks-common/guide.html#fastJoin
 
 
--- v1.1.0 --------------------------------------------------
+-- v1.3.0 --------------------------------------------------
 
  Tooling
   - pagination in admin html
