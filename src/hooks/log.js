@@ -13,6 +13,12 @@ module.exports = function () {
     // You can customize the message (and logger) to your needs
     logger.debug(`${context.type} app.service('${context.path}').${context.method}()`);
 
+    // log actions where authentication are required
+    if (context.params.user) {
+      const userId = context.params.user._id;
+      logger.info(`${Date()} ${context.method} ${context.path} by user ${userId}`);
+    }
+
     if (typeof context.toJSON === 'function' && logger.level === 'debug') {
       logger.debug('Hook Context', util.inspect(context, { colors: false }));
     }

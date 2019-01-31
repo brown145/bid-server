@@ -5,11 +5,12 @@
 module.exports = function (adminWhitelist = []) {
   return async (context) => {
     // Get `app`, `method`, `params` and `result` from the hook context
-    const { method, result } = context;
+    const { result } = context;
 
     // Make sure that we always have a list of items either by wrapping
     // a single item into an array or by getting the `data` from the `find` method's result
-    const items = method === 'find' ? result.data : [result];
+    // const items = method === 'find' ? result.data : [result]; // TODO: idk why this does not work for internal calls
+    const items = (result.data) || [result];
 
     // Asynchronously get user object from each item's `userId`
     // and add it to the item

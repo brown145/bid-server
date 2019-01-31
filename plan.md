@@ -44,8 +44,8 @@ Tests - very basic
 
 VERSION NEXT
 logging
-  [ ] keep some kind of log
-  [ ] Use app hooks for logging
+  [√] keep some kind of log
+  [√] Use app hooks for logging
 
 VERSION FUTURE
 Dockerize
@@ -86,6 +86,8 @@ Admin
  - isAdmin for given users
     - allow owner/admin edits to names ect...
  - Use when and disallow to prevent edits to room/issues names
+
+ - https://github.com/feathersjs-ecosystem/feathers-authentication-hooks#restricttoowner
 
 -- v1.1.0 --------------------------------------------------
 

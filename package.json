@@ -22,6 +22,7 @@
   },
   "scripts": {
     "clean": "rm -rf data/*",
+    "clean-logs": "rm -rf logs/*",
     "test": "npm run eslint && NODE_ENV= npm run jest",
     "eslint": "eslint src/. test/. --config .eslintrc.json",
     "dev": "nodemon src/",
