@@ -42,27 +42,27 @@ Tests - very basic
   [√] services
   [√] utilities
 
-VERSION NEXT
 logging
   [√] keep some kind of log
   [√] Use app hooks for logging
 
-VERSION FUTURE
 Dockerize
-  - setup Docker
-  - enable local Docker use
-  - DB setup with Docker
+   [√] setup Docker
+   [√] enable local Docker use
+   [√] DB setup with Docker
 
+VERSION NEXT
 Git
  - publish as private repo
 
+VERSION FUTURE
 Productionize
   - review configs
   - review env variables
   - set version number
 
 Host
-  - host on heroku or aws
+  [√] aws
 
 
 
@@ -88,6 +88,12 @@ Admin
  - Use when and disallow to prevent edits to room/issues names
 
  - https://github.com/feathersjs-ecosystem/feathers-authentication-hooks#restricttoowner
+
+Pro vs Con Hosts
+ - aws
+ - heroku
+ - dockerhub
+ - ...
 
 -- v1.1.0 --------------------------------------------------
 
