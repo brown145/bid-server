@@ -51,21 +51,20 @@ Dockerize
    [√] enable local Docker use
    [√] DB setup with Docker
 
-VERSION NEXT
 Git
   [√] publish as private repo
 
-VERSION FUTURE
+VERSION NEXT
 Productionize
-  - review configs
-  - review env variables
-  - set version number
+   [√] review configs
+   [√] review env variables
+   [√] set version number
 
 Host
   [√] aws
 
 
-
+VERSION FUTURE
 -- v1.0.0 --------------------------------------------------
 
 Tests - 85% coverage
