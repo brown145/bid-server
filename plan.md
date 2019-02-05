@@ -53,7 +53,7 @@ Dockerize
 
 VERSION NEXT
 Git
- - publish as private repo
+  [√] publish as private repo
 
 VERSION FUTURE
 Productionize
