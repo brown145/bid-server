@@ -1,8 +1,8 @@
+/*  global io, feathers, document */
+
 const socket = io();
 const client = feathers();
 let service = null;
-
-const appEl = document.querySelector('#app');
 
 client.configure(feathers.socketio(socket));
 client.configure(feathers.authentication());
@@ -10,15 +10,15 @@ client.configure(feathers.authentication());
 const appElements = {
   loadingEl: document.querySelector('#loading'),
   anonymousSection: document.querySelector('#anonymous'),
-  authorizedSection: document.querySelector('#authorized')
-}
+  authorizedSection: document.querySelector('#authorized'),
+};
 
 client.authenticate()
-  .then(data => {
+  .then(() => {
     initHTML(true);
   })
-  .catch(err => {
-    console.log(err);
+  .catch((err) => {
+    console.log(err); // eslint-disable-line no-console
     initHTML(false);
   });
 
@@ -40,8 +40,8 @@ function initHTML(isLoggedIn) {
 
 function initTabClickHandler() {
   const navigation = appElements.authorizedSection.querySelector('.navigation');
-  navigation.addEventListener('click', e => {
-    const listEl = e.target.closest('li');
+  navigation.addEventListener('click', (event) => {
+    const listEl = event.target.closest('li');
 
     if (!listEl || !listEl.dataset) {
       return;
@@ -60,8 +60,8 @@ function initTabClickHandler() {
 
 function initItemClickHandler() {
   const mainTabelEL = appElements.authorizedSection.querySelector('.mainTable');
-  mainTabelEL.addEventListener('click', e => {
-    const rowEl = e.target.closest('tr');
+  mainTabelEL.addEventListener('click', (event) => {
+    const rowEl = event.target.closest('tr');
     if (rowEl && rowEl.dataset) {
       renderDetails(rowEl.dataset.id);
     }
@@ -71,20 +71,25 @@ function initItemClickHandler() {
 function setActiveTab(tabRef) {
   service = client.service(tabRef);
   const tabEls = appElements.authorizedSection.querySelectorAll('.navigation li');
-  tabEls.forEach(tab => {
+  tabEls.forEach((tab) => {
     tab.classList.toggle('active', tab.dataset.tab === tabRef);
   });
 }
 
 async function renderMainContent(tabRef) {
-  const items = await service.find().then(result => result.data);
+  const items = await service.find(tabRef).then((result) => result.data);
+  const mainTabelEL = appElements.authorizedSection.querySelector('.mainTable');
+
   renderTable(items);
   renderDetails(null);
 
-  // listen for new items
-  service.on('created', item => {
-    const rowHTML = renderTableRow(item);
-    mainTabelEL.querySelector('tbody').innerHTML += rowHTML;
+  service.on('created', (item) => {
+    const currentTab = document.location.hash.slice(1);
+    // TODO: this is hacky; need to better setup this 'created' handler.
+    if (tabRef === currentTab) {
+      const rowHTML = renderTableRow(item);
+      mainTabelEL.querySelector('tbody').innerHTML += rowHTML;
+    }
   });
 }
 
@@ -119,7 +124,8 @@ function renderTableBody(items) {
 }
 
 function renderTableRow(row){
-  return Object.entries(row).map(renderTableCell).join('');
+  return Object.entries(row).map(renderTableCell)
+    .join('');
 }
 
 function renderTableCell(cell) {

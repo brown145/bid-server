@@ -1,4 +1,44 @@
 {
-  "host": "bid-server-app.feathersjs.com",
-  "port": "PORT"
+  "host": "ec2-54-244-27-45.us-west-2.compute.amazonaws.com",
+  "port": "3030",
+  "public": "../public/",
+  "paginate": {
+    "default": 100,
+    "max": 100
+  },
+  "nedb": "NEDB_PATH",
+  "authentication": {
+    "secret": "AUTH_SECRET",
+    "strategies": [
+      "jwt"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "typ": "access"
+      },
+      "todo": "TODO",
+      "audience": "https://bid-server.todo.com",
+      "subject": "loginStatus",
+      "issuer": "bid-server",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "google": {
+      "clientID": "GOOGLE_CLIENT_ID",
+      "clientSecret": "GOOGLE_CLIENT_SECRET",
+      "callbackURL": "http://ec2-54-244-27-45.us-west-2.compute.amazonaws.com/auth/google/callback",
+      "successRedirect": "/",
+      "scope": [
+        "profile openid email"
+      ]
+    },
+    "cookie": {
+      "enabled": true,
+      "name": "feathers-jwt",
+      "httpOnly": false,
+      "secure": false
+    }
+  }
 }

@@ -1,28 +1,37 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+const { associateCurrentUser } = require('feathers-authentication-hooks');
+const { disallow, keep, populate, required, setNow } = require('feathers-hooks-common');
 
-const processIssue = require('../../hooks/process-issue');
-const populateRoom = require('../../hooks/populate-room');
-const formatId = require('../../hooks/format-id');
+const setName = require('../../hooks/set-name');
+const createdBySchema = require('../../schemas/user-by-createdById');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate('jwt')],
     find: [],
     get: [],
-    create: [processIssue()],
-    update: [],
-    patch: [],
-    remove: []
+    create: [
+      required('name'),
+      setNow('createdAt'),
+      setName({ maxLength: 200 }),
+      associateCurrentUser({ as: 'createdById' }),
+      keep('createdAt', 'createdById', 'name'),
+    ],
+    update: [disallow()],
+    patch: [disallow()],
+    remove: [disallow()],
   },
 
   after: {
     all: [],
-    find: [formatId()],
-    get: [populateRoom(), formatId()],
+    find: [],
+    get: [
+      populate({ schema: createdBySchema }),
+    ],
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -32,6 +41,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };

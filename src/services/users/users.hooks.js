@@ -1,27 +1,46 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
-const processGoogleUser = require('../../hooks/process-google-user');
+const { disallow, discard, iffElse, keep } = require('feathers-hooks-common');
 
-const formatId = require('../../hooks/format-id');
+const processGoogleUser = require('../../hooks/process-google-user');
+const populateIsAdmin = require('../../hooks/populate-user_isAdmin');
+const { adminWhitelist, userWhitelist } = require('../../utilities/user-hardcodes');
+
+const isSelf = (context) => {
+  if (!context.params.user) {
+    return false;
+  }
+
+  return context.params.user._id === context.result._id;
+};
 
 module.exports = {
   before: {
     all: [],
-    find: [ authenticate('jwt') ],
-    get: [ authenticate('jwt') ],
-    create: [processGoogleUser()],
-    update: [  authenticate('jwt') ],
-    patch: [  authenticate('jwt') ],
-    remove: [ authenticate('jwt') ]
+    find: [authenticate('jwt')],
+    get: [authenticate('jwt')],
+    create: [processGoogleUser(userWhitelist)],
+    update: [authenticate('jwt'), processGoogleUser(userWhitelist)],
+    patch: [authenticate('jwt')],
+    remove: [disallow(), authenticate('jwt')],
   },
 
   after: {
     all: [],
-    find: [formatId()],
-    get: [formatId()],
+    find: [
+      populateIsAdmin(adminWhitelist),
+      keep('_id', 'displayName', 'isAdmin'),
+    ],
+    get: [
+      iffElse(
+        isSelf,
+        discard('google'),
+        keep('_id', 'displayName', 'isAdmin'),
+      ),
+    ],
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -31,6 +50,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };

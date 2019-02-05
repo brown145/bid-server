@@ -8,16 +8,22 @@ const util = require('util');
 // logger.level = 'debug';
 
 module.exports = function () {
-  return context => {
+  return (context) => {
     // This debugs the service call and a stringified version of the hook context
     // You can customize the message (and logger) to your needs
     logger.debug(`${context.type} app.service('${context.path}').${context.method}()`);
-    
-    if(typeof context.toJSON === 'function' && logger.level === 'debug') {
-      logger.debug('Hook Context', util.inspect(context, {colors: false}));
+
+    // log actions where authentication are required
+    if (context.params.user) {
+      const userId = context.params.user._id;
+      logger.info(`${Date()} ${context.method} ${context.path} by user ${userId}`);
     }
-    
-    if(context.error && !context.result) {
+
+    if (typeof context.toJSON === 'function' && logger.level === 'debug') {
+      logger.debug('Hook Context', util.inspect(context, { colors: false }));
+    }
+
+    if (context.error && !context.result) {
       logger.error(context.error.stack);
     }
   };
