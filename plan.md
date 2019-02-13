@@ -54,7 +54,6 @@ Dockerize
 Git
   [√] publish as private repo
 
-VERSION NEXT
 Productionize
    [√] review configs
    [√] review env variables
@@ -65,7 +64,25 @@ Host
 
 
 VERSION FUTURE
+-- v0.0.1 --------------------------------------------------
+
+Bid Validation
+ create
+   - reject bid if user has already bid on task
+   - reject bid if task does not exist (already done, maybe)
+   - reject bid if task state is not "active"
+
+Issue Validation
+ update
+ - allow update to state prop Pending -> Active -> Inactive (one directional)
+ create
+ -
+
+
+
 -- v1.0.0 --------------------------------------------------
+
+Readme.md
 
 Tests - 85% coverage
   - see: https://blog.feathersjs.com/testing-feathers-applications-eaf1a323d2d9
