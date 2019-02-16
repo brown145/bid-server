@@ -1,7 +1,7 @@
 {
   "name": "bid-server",
   "description": "Provides bidding API for planning poker app",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "repository": "https://github.com/brown145/bid-server",
   "license": "MIT",
   "main": "src",
