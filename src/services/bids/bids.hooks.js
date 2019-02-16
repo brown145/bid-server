@@ -27,7 +27,9 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
+    find: [
+      populate({ schema: createdBySchema }),
+    ],
     get: [
       populate({ schema: issueSchema }),
       populate({ schema: createdBySchema }),

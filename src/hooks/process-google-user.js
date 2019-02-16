@@ -9,6 +9,7 @@ module.exports = function (userWhitelist = []) {
       // drop most of the google data
       context.data = {
         googleId: google.profile.id,
+        email: google.profile.emails[0].value,
         displayName: google.profile.displayName || google.profile.emails[0].value,
       };
     } else {

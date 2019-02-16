@@ -28,7 +28,7 @@
     "google": {
       "clientID": "GOOGLE_CLIENT_ID",
       "clientSecret": "GOOGLE_CLIENT_SECRET",
-      "successRedirect": "/",
+      "successRedirect": "http://localhost:3000/",
       "scope": [
         "profile openid email"
       ]
