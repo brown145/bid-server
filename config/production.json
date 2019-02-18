@@ -1,6 +1,6 @@
 {
   "host": "ec2-54-244-27-45.us-west-2.compute.amazonaws.com",
-  "port": "3030",
+  "port": "3333",
   "public": "../public/",
   "paginate": {
     "default": 100,
