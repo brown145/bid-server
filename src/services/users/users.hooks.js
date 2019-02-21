@@ -3,7 +3,7 @@ const { disallow, discard, iffElse, keep } = require('feathers-hooks-common');
 
 const processGoogleUser = require('../../hooks/process-google-user');
 const populateIsAdmin = require('../../hooks/populate-user_isAdmin');
-const { adminWhitelist, userWhitelist } = require('../../utilities/user-hardcodes');
+const { adminWhitelist } = require('../../utilities/user-hardcodes');
 
 const isSelf = (context) => {
   if (!context.params.user) {
@@ -18,8 +18,8 @@ module.exports = {
     all: [],
     find: [authenticate('jwt')],
     get: [authenticate('jwt')],
-    create: [processGoogleUser(userWhitelist)],
-    update: [authenticate('jwt'), processGoogleUser(userWhitelist)],
+    create: [processGoogleUser()],
+    update: [authenticate('jwt'), processGoogleUser()],
     patch: [authenticate('jwt')],
     remove: [disallow(), authenticate('jwt')],
   },

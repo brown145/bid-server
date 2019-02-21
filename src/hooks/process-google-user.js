@@ -1,11 +1,11 @@
 const errors = require('@feathersjs/errors');
 
 // eslint-disable-next-line no-unused-vars
-module.exports = function (userWhitelist = []) {
+module.exports = function () {
   return async (context) => {
     const { google } = context.data;
 
-    if (google && userWhitelist.includes(google.profile.id)) {
+    if (google) {
       // drop most of the google data
       context.data = {
         googleId: google.profile.id,
