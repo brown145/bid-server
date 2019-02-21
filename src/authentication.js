@@ -28,5 +28,13 @@ module.exports = function (app) {
         authentication.hooks.authenticate('jwt'),
       ],
     },
+    after: {
+      create: [
+        (context) => {
+          context.result.user = context.params.user;
+          return context;
+        },
+      ],
+    },
   });
 };
