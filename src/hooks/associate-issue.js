@@ -18,6 +18,10 @@ module.exports = function (options = {}) {
       throw new errors.Unprocessable(`issue with id ${data.issueId} not found`);
     }
 
+    if (issue.status !== 'active') {
+      throw new errors.Unprocessable(`issue with id ${data.name} is not active`);
+    }
+
     data.issueId = issue._id;
 
     return context;

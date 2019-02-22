@@ -1,9 +1,15 @@
 const errors = require('@feathersjs/errors');
 
-// eslint-disable-next-line no-unused-vars
 module.exports = function (options = { statusList: ['pending', 'active', 'inactive'] }) {
   return async (context) => {
-    const { data } = context;
+    const { id, method, app, data } = context;
+
+    if (method === 'patch') {
+      const existing = await app.service('issues').get(id);
+      if (existing.status === 'inactive') {
+        throw new errors.Unprocessable('Cannot update status for inactive issue');
+      }
+    }
 
     if (!data.status) {
       context.data.status = options.statusList[0];
