@@ -4,6 +4,7 @@ const { disallow, keep, populate, required, setNow } = require('feathers-hooks-c
 
 const setName = require('../../hooks/set-name');
 const setStatus = require('../../hooks/set-status');
+const associateRoomIdByUser = require('../../hooks/associate-roomByUser');
 const createdBySchema = require('../../schemas/user-by-createdById');
 
 module.exports = {
@@ -17,7 +18,8 @@ module.exports = {
       setName({ maxLength: 200 }),
       setStatus(),
       associateCurrentUser({ as: 'createdById' }),
-      keep('createdAt', 'createdById', 'name', 'status'),
+      associateRoomIdByUser(),
+      keep('createdAt', 'createdById', 'name', 'status', 'roomId'),
     ],
     update: [disallow()],
     patch: [

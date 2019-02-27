@@ -2,12 +2,8 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 const { associateCurrentUser } = require('feathers-authentication-hooks');
 const { disallow, keep, populate, required, setNow } = require('feathers-hooks-common');
 
-const setBidValue = require('../../hooks/set-bid_value');
-const associateIssue = require('../../hooks/associate-issue');
-const associateRoomIdByUser = require('../../hooks/associate-roomByUser');
-const issueSchema = require('../../schemas/issue-by-issueId');
+const setName = require('../../hooks/set-name');
 const createdBySchema = require('../../schemas/user-by-createdById');
-const validateUniqueBid = require('../../hooks/validate-bid_unique');
 
 module.exports = {
   before: {
@@ -15,14 +11,11 @@ module.exports = {
     find: [],
     get: [],
     create: [
-      required('value', 'issueId'),
+      required('name'),
       setNow('createdAt'),
-      setBidValue(),
+      setName({ maxLength: 200 }),
       associateCurrentUser({ as: 'createdById' }),
-      associateIssue(),
-      associateRoomIdByUser(),
-      keep('createdAt', 'createdById', 'value', 'issueId', 'roomId'),
-      validateUniqueBid(),
+      keep('createdAt', 'createdById', 'name'),
     ],
     update: [disallow()],
     patch: [disallow()],
@@ -31,11 +24,8 @@ module.exports = {
 
   after: {
     all: [],
-    find: [
-      populate({ schema: createdBySchema }),
-    ],
+    find: [],
     get: [
-      populate({ schema: issueSchema }),
       populate({ schema: createdBySchema }),
     ],
     create: [],

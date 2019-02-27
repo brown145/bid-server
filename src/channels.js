@@ -36,16 +36,30 @@ module.exports = function(app) {
     }
   });
 
+  app.on('join', ({ room, connection }) => {
+    // TODO: leave all other rooms
+    app.channel(`room/${room._id}`).join(connection);
+  });
+
   // eslint-disable-next-line no-unused-vars
   app.publish((data, hook) => {
     // Here you can add event publishers to channels set up in `channels.js`
     // To publish only for a specific event use `app.publish(eventname, () => {})`
 
-    console.log('Publishing all events to all authenticated users. See `channels.js` and https://docs.feathersjs.com/api/channels.html for more information.'); // eslint-disable-line
+    // console.log('Publishing all events to all authenticated users. See `channels.js` and https://docs.feathersjs.com/api/channels.html for more information.'); // eslint-disable-line
 
     // e.g. to publish all service events to all authenticated users use
-    return app.channel('authenticated');
+    // return app.channel('authenticated');
   });
+
+  app.service('issues')
+    .publish((data) => app.channel(`room/${data.roomId}`));
+
+  app.service('users')
+    .publish((data) => app.channel(`room/${data.roomId}`));
+
+  app.service('bids')
+    .publish((data) => app.channel(`room/${data.roomId}`));
 
   // Here you can also add service specific event publishers
   // e.g. the publish the `users` service `created` event to the `admins` channel
