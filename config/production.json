@@ -25,8 +25,8 @@
       "expiresIn": "1d"
     },
     "google": {
-      "clientID": "GOOGLE_CLIENT_ID",
-      "clientSecret": "GOOGLE_CLIENT_SECRET",
+      "clientID": "GOOGLE_SIGNIN_CLIENT_ID",
+      "clientSecret": "GOOGLE_SIGNIN_CLIENT_SECRET",
       "callbackURL": "http://ec2-54-244-27-45.us-west-2.compute.amazonaws.com/auth/google/callback",
       "successRedirect": "/",
       "scope": [

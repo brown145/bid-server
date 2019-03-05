@@ -26,8 +26,8 @@
       "expiresIn": "1d"
     },
     "google": {
-      "clientID": "GOOGLE_CLIENT_ID",
-      "clientSecret": "GOOGLE_CLIENT_SECRET",
+      "clientID": "GOOGLE_SIGNIN_CLIENT_ID",
+      "clientSecret": "GOOGLE_SIGNIN_CLIENT_SECRET",
       "successRedirect": "http://localhost:4444/",
       "scope": [
         "profile openid email"
