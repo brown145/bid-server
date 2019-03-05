@@ -36,9 +36,13 @@ module.exports = function(app) {
     }
   });
 
-  app.on('join', ({ room, connection }) => {
+  app.on('join', ({ roomId, connection }) => {
     // TODO: leave all other rooms
-    app.channel(`room/${room._id}`).join(connection);
+    app.channel(`room/${roomId}`).join(connection);
+  });
+
+  app.on('leave', ({ roomId, connection }) => {
+    app.channel(`room/${roomId}`).leave(connection);
   });
 
   // eslint-disable-next-line no-unused-vars

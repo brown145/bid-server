@@ -1,5 +1,5 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
-const { disallow, discard, iffElse, keep, required } = require('feathers-hooks-common');
+const { disallow, discard, iffElse, keep } = require('feathers-hooks-common');
 const { associateCurrentUser } = require('feathers-authentication-hooks');
 
 const processGoogleUser = require('../../hooks/process-google-user');
@@ -39,14 +39,17 @@ module.exports = {
 
         if (data.roomId) {
           const room = await app.service('rooms').get(data.roomId);
-          // app.channel(`room/${room._id}`).join(params.connection);
-          app.emit('join', { room, connection });
-          if (!room) {
-            // TODO:
-            console.log('TODO'); //eslint-disable-line
-          }
+          if (room) {
+            app.emit('join', { roomId: room._id, connection }); // notify channles
+            context.service.emit('joinRoom', { roomId: room._id, user: params.user }); // notifiy clients
 
-          data.roomId = room._id;
+            if (params.user.roomId !== room._id) {
+              app.emit('leave', { roomId: params.user.roomId, connection }); // notify channles
+              context.service.emit('leaveRoom', { roomId: params.user.roomId, user: params.user }); // notifiy clients
+            }
+          } else {
+            data.roomId = null;
+          }
         }
 
         return context;
